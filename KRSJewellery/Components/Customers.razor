@@ -1,0 +1,41 @@
+﻿@page "/customers"
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Registration</title>
+</head>
+<body >
+
+    <div style="max-width: 400px; margin: 0 auto; padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+        <h2 style="text-align: center; color: #333;">Customer Registration</h2>
+
+        <form action="/submit_registration" method="POST">
+            <label for="fname" style="display: block; margin-bottom: 8px;">First Name:</label>
+            <input type="text" id="fname" name="firstname" placeholder="Enter your first name"
+                   style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+            <label for="lname" style="display: block; margin-bottom: 8px;">Last Name:</label>
+            <input type="text" id="lname" name="lastname" placeholder="Enter your last name"
+                   style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+            <label for="email" style="display: block; margin-bottom: 8px;">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email"
+                   style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+            <label for="password" style="display: block; margin-bottom: 8px;">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password"
+                   style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+
+            <button type="submit" onclick="alert('Registeration Success!!')"  style="width: 100%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Register
+            </button>
+        </form>
+    </div>
+
+</body>
+</html>
+

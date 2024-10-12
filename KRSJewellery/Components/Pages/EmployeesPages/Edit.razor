@@ -1,0 +1,106 @@
+﻿@page "/employees/edit"
+@using Microsoft.EntityFrameworkCore
+@using KRSJewellery.Models
+@inject IDbContextFactory<KRSJewellery.Data.MyAppDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Edit</PageTitle>
+
+<h1>Edit</h1>
+
+<h2>Employees</h2>
+<hr />
+@if (Employees is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm method="post" Model="Employees" OnValidSubmit="UpdateEmployees" FormName="edit" Enhance>
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <input type="hidden" name="Employees.EMPID" value="@Employees.EMPID" />
+                <div class="mb-3">
+                    <label for="empname" class="form-label">EMPNAME:</label>
+                    <InputText id="empname" @bind-Value="Employees.EMPNAME" class="form-control" />
+                    <ValidationMessage For="() => Employees.EMPNAME" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="place" class="form-label">PLACE:</label>
+                    <InputText id="place" @bind-Value="Employees.PLACE" class="form-control" />
+                    <ValidationMessage For="() => Employees.PLACE" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="contact" class="form-label">CONTACT:</label>
+                    <InputText id="contact" @bind-Value="Employees.CONTACT" class="form-control" />
+                    <ValidationMessage For="() => Employees.CONTACT" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">EMAIL:</label>
+                    <InputText id="email" @bind-Value="Employees.EMAIL" class="form-control" />
+                    <ValidationMessage For="() => Employees.EMAIL" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="salary" class="form-label">SALARY:</label>
+                    <InputNumber id="salary" @bind-Value="Employees.SALARY" class="form-control" />
+                    <ValidationMessage For="() => Employees.SALARY" class="text-danger" />
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button> |
+                <a href="/employees" class="btn btn-dark">Back to List</a>
+            </EditForm>
+        </div>
+    </div>
+}
+
+@code {
+    [SupplyParameterFromQuery]
+    private int EMPID { get; set; }
+
+    [SupplyParameterFromForm]
+    private Employees? Employees { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        Employees ??= await context.Employees.FirstOrDefaultAsync(m => m.EMPID == EMPID);
+
+        if (Employees is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+
+    // To protect from overposting attacks, enable the specific properties you want to bind to.
+    // For more information, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task UpdateEmployees()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Attach(Employees!).State = EntityState.Modified;
+
+        try
+        {
+            await context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!EmployeesExists(Employees!.EMPID))
+            {
+                NavigationManager.NavigateTo("notfound");
+            }
+            else
+            {
+                throw;
+            }
+        }
+
+        NavigationManager.NavigateTo("/employees");
+    }
+
+    private bool EmployeesExists(int empid)
+    {
+        using var context = DbFactory.CreateDbContext();
+        return context.Employees.Any(e => e.EMPID == empid);
+    }
+}

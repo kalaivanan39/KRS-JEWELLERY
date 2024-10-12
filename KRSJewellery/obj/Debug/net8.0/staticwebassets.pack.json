@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\DELL\\source\\repos\\KRSJewellery\\KRSJewellery\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\KRSJewellery.bundle.scp.css",
+      "PackagePath": "staticwebassets\\KRSJewellery.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\source\\repos\\KRSJewellery\\KRSJewellery\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\source\\repos\\KRSJewellery\\KRSJewellery\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\source\\repos\\KRSJewellery\\KRSJewellery\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\source\\repos\\KRSJewellery\\KRSJewellery\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.KRSJewellery.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.KRSJewellery.props",
+      "PackagePath": "build\\KRSJewellery.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.KRSJewellery.props",
+      "PackagePath": "buildMultiTargeting\\KRSJewellery.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.KRSJewellery.props",
+      "PackagePath": "buildTransitive\\KRSJewellery.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,0 +1,61 @@
+﻿@page "/employees/create"
+@using Microsoft.EntityFrameworkCore
+@using KRSJewellery.Models
+@inject IDbContextFactory<KRSJewellery.Data.MyAppDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Create</PageTitle>
+
+<h1>Add KRS Employees</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Employees" OnValidSubmit="AddEmployees" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" />
+            <div class="mb-3">
+                <label for="empname" class="form-label">EMPNAME:</label> 
+                <InputText id="empname" @bind-Value="Employees.EMPNAME" class="form-control" /> 
+                <ValidationMessage For="() => Employees.EMPNAME" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="place" class="form-label">PLACE:</label> 
+                <InputText id="place" @bind-Value="Employees.PLACE" class="form-control" /> 
+                <ValidationMessage For="() => Employees.PLACE" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="contact" class="form-label">CONTACT:</label> 
+                <InputText id="contact" @bind-Value="Employees.CONTACT" class="form-control" /> 
+                <ValidationMessage For="() => Employees.CONTACT" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="email" class="form-label">EMAIL:</label> 
+                <InputText id="email" @bind-Value="Employees.EMAIL" class="form-control" /> 
+                <ValidationMessage For="() => Employees.EMAIL" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="salary" class="form-label">SALARY:</label> 
+                <InputNumber id="salary" @bind-Value="Employees.SALARY" class="form-control" /> 
+                <ValidationMessage For="() => Employees.SALARY" class="text-danger" /> 
+            </div>        
+            <button type="submit" class="btn btn-primary">Create</button> | 
+            <a href="/employees" class="btn btn-dark">Back to List</a>
+        </EditForm>
+    </div>
+</div>
+
+
+@code {
+    [SupplyParameterFromForm]
+    private Employees Employees { get; set; } = new();
+
+    // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task AddEmployees()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Employees.Add(Employees);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/employees");
+    }
+}
